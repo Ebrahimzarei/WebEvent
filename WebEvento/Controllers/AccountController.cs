@@ -42,7 +42,8 @@ namespace WebEvento.Controllers
         [Microsoft.AspNetCore.Mvc.HttpPost]
         public async Task<IActionResult> Login(ViewModel.InformationViewModel Vmodel )
         {
-             isAjax = HttpContext.Request.IsAjax("POST");
+             isAjax = HttpContext.Request.IsAjax("POST");  
+            //test ajax
 
             if (isAjax)
             {
