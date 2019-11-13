@@ -1,0 +1,20 @@
+{
+    "iisSettings": {
+        "windowsAuthentication": false,
+        "anonymousAuthentication": true,
+      "iis": {
+        "applicationUrl": "http://localhost/WebEvento",
+        "sslPort": 0
+      }
+    },
+    "profiles": {
+      "IIS": {
+        "commandName": "IIS",
+        "launchBrowser": "true",
+        "launchUrl": "http://localhost/WebEvento",
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        }
+      }
+    }
+}

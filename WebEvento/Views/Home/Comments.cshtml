@@ -1,0 +1,67 @@
+﻿
+@model WebEvento.ViewModel.InformationViewModel
+@{
+    ViewData["Title"] = "جستجو";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> نطرات رویداد</h2>
+
+<table class="table table-striped table-bordered table-sm" id="dtBasicExample" cellspacing="0" width="100%">
+    <thead>
+        <tr class="success">
+            <th>@Html.DisplayNameFor(model => model.Comment.Event.CaptionEvent)</th>
+            <th> @Html.DisplayNameFor(model => model.Comment.CaptionComment)</th>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.Error == true)
+        {
+
+
+            @foreach (var item in Model.CommentnList)
+            {
+                <tr>
+                    <td>@item.Event.CaptionEvent</td>
+
+                    <td>@item.CaptionComment</td>
+
+
+                    <td>
+                        <a asp-action="EnterComment" onclick="return confirm('آیا از ثبت نطر اطمینان دارید؟'); " asp-controller="Home" asp-route-id="@item.Id">ثبت نظر</a>
+
+                    </td>
+                </tr>
+
+            }
+        }
+        @if (ViewBag.Error == false)
+        {
+            <tr>
+                <td>نظری ثبت نشده است</td>
+            </tr>
+           
+        }
+
+
+
+    </tbody>
+
+</table>
+
+<pioneer-pagination info="@ViewBag.PaginatedMeta" route="/blog" previous-page-text="hey" next-page-text="you"></pioneer-pagination>
+@section Script{
+
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#dtBasicExample').DataTable();
+                $('.dataTables_length').addClass('bs-select');
+            });
+    </script>
+
+
+
+}

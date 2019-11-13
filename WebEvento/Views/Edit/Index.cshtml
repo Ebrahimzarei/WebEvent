@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+          //  window.onload = function () {
+                alert("@ViewBag.Message");
+          //  };
+    </script>
+}
+

@@ -1,0 +1,814 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta content="Admin Dashboard" name="description" />
+    <meta content="ThemeDesign" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>ایونتو</title>
+
+
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico">
+    <link href="~/plugins/RWD-Table-Patterns/dist/css/rwd-table.min.css" rel="stylesheet" type="text/css" media="screen">
+    <!-- For DataPicker -->
+    @*<link href="~/css/kendo.common.min.css" rel="stylesheet" />
+
+        <link href="~/css/kendo.default.min.css" rel="stylesheet" />*@
+
+
+    <link rel="stylesheet" href="~/css/PersianDatePicker.css" />
+    <link rel="stylesheet" href="~/css/PersianDatePicker.min.css" />
+
+
+    <!-- morris css -->
+    <link rel="stylesheet" href="~/plugins/morris/morris.css">
+
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css">
+
+
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />*@
+    @RenderSection("ScriptMap", false);
+
+</head>
+<body class="fixed-left">
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="left side-menu">
+            <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+                <i class="mdi mdi-close"></i>
+            </button>
+
+            <div class="left-side-logo d-block d-lg-none">
+                <div class="text-center">
+
+                    <a href="index-2.html" class="logo"><img src="~/assets/images/logo_dark.png" height="20" alt="logo"></a>
+                </div>
+            </div>
+
+            <div class="sidebar-inner slimscrollleft">
+
+                <div id="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">اصلی</li>
+
+                        <li>
+                            <a href="index-2.html" class="waves-effect">
+                                <i class="dripicons-home"></i>
+                                <span>
+
+                                    <b>
+                                        داشبورد
+                                    </b>
+
+
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(1);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> ثبت اطلاعات پایه </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li>
+
+
+                                    <b>
+                                        <a class="btn btn-outline-danger" asp-action="Exhibition" asp-controller="Home" asp-route-id="">نمایشگاه </a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+
+                                    <b>
+                                        <a class="btn btn-outline-danger" asp-action="Address" asp-controller="Home" asp-route-id="">آدرس </a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-info" asp-action="Eduction" asp-controller="Home" asp-route-id="">آموزش </a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-pink" asp-action="Place" asp-controller="Home" asp-route-id="">مکان </a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+
+                                    <b>
+                                        <a class="btn btn-outline-primary" asp-action="Users" asp-controller="Home" asp-route-id="">کاربران </a>
+
+                                    </b>
+
+
+                                </li>
+                                <li>
+
+
+                                    <b>
+                                        <a class="btn btn-outline-purple" asp-action="Cermoney" asp-controller="Home" asp-route-id="">مراسم و همایش </a>
+
+                                    </b>
+
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-secondary" asp-action="Comment" asp-controller="Home" asp-route-id="">نظرات </a>
+                                    </b>
+
+
+
+
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-success" asp-action="Information" asp-controller="Home" asp-route-id="">قوانین و درباره ما </a>
+
+                                    </b>
+
+
+
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-warning" asp-action="Colors" asp-controller="Home" asp-route-id=""> رنگ ها </a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-warning" asp-action="Event" asp-controller="Home" asp-route-id="">ثبت رویداد</a>
+
+                                    </b>
+
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-rocket"></i> <span>  بیشتر</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li>
+
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="FindExhibition" asp-controller="Find" asp-route-id="">نمایشگاه</a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="FindEduction" asp-controller="Find" asp-route-id="">آموزش</a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="FindPlace" asp-controller="Find" asp-route-id="">مکان</a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="SpecialEvent" asp-controller="Find" asp-route-id="">ویژه کردن رویداد ها</a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+
+                                    <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="FindUsers" asp-controller="Find" asp-route-id="">کاربران</a>
+
+
+
+                                </li>
+                                <li>
+
+                                    <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="FindCermoney" asp-controller="Find" asp-route-id="">مراسم و همایش</a>
+
+
+                                <li>
+
+                                    <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="FindComments" asp-controller="Find" asp-route-id="">نظرات</a>
+
+
+
+
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="FindInformation" asp-controller="Find" asp-route-id="">قوانین و درباره ما</a>
+
+                                    </b>
+
+
+
+
+                                </li>
+                                <li>
+                                    <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="FindColor" asp-controller="Find" asp-route-id="">رنگ ها</a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="FindEvents" asp-controller="Find" asp-route-id="">رویداد ها</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-rocket"></i> <span>  ثبت عملیات</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li>
+
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="EventDay" asp-controller="Operation" asp-route-id="">رویداد های امروز</a>
+
+                                    </b>
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="StatuseChecked" asp-controller="Operation" asp-route-id="">رویداد های بررسی نشده</a>
+
+                                    </b>
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="EventEdit" asp-controller="Operation" asp-route-id="">رویداد های نیاز به تغییرات</a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="EventPayed" asp-controller="Operation" asp-route-id="">رویداد های نیاز به پرداخت</a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="EventSpecial" asp-controller="Operation" asp-route-id="">رویداد های ویژه</a>
+
+                                    </b>
+
+                                </li>
+                                <li>
+
+
+                                    <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="EventSlider" asp-controller="Operation" asp-route-id="">رویداد های اسلایدر</a>
+
+
+
+                                </li>
+                                <li>
+
+                                    <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="EventLadder" asp-controller="Operation" asp-route-id="">رویداد های نردبان شده</a>
+
+
+                                <li>
+
+                                    <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="EventStatuseEdit" asp-controller="Operation" asp-route-id="">رویداد های نیاز به تغییرات</a>
+
+
+
+
+
+                                </li>
+
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="EventNotPublish" asp-controller="Operation" asp-route-id="">رویداد های منتشر نشده</a>
+
+                                    </b>
+
+
+
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="StatuseChecked" asp-controller="Operation" asp-route-id="">رویداد های بررسی نشده</a>
+
+                                    </b>
+
+
+
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="StatusePayed" asp-controller="Operation" asp-route-id="">رویداد های  پرداخت شده</a>
+
+                                    </b>
+
+
+
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="EventUser" asp-controller="Operation" asp-route-id="">تعداد صاحبان رویداد</a>
+
+                                    </b>
+
+
+
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="UserApp" asp-controller="Operation" asp-route-id="">تعداد کل  کاربران</a>
+
+                                    </b>
+
+
+
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="TranctionEvent" asp-controller="Operation" asp-route-id="">تراکنش های ثبت شده</a>
+
+                                    </b>
+
+
+
+
+                                </li>
+                                <li>
+
+                                    <b>
+                                        <a class="btn btn-outline-danger btn-lg
+                                               " asp-action="CommentsEvent" asp-controller="Operation" asp-route-id="">نظرات رویداد</a>
+
+                                    </b>
+
+
+
+
+                                </li>
+
+
+
+                            </ul>
+                        </li>
+
+
+
+
+
+
+
+                        <li class="has_sub">
+                            <!-- <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> جداول ها </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="tables-basic.html">جداول پایه</a></li>
+                                <li><a href="tables-datatable.html">جدول داده ها</a></li>
+                                <li><a href="tables-responsive.html">جدول پاسخگو</a></li>
+                                <li><a href="tables-editable.html">میز قابل ویرایش</a></li>
+                            </ul> -->
+                        </li>
+
+
+
+
+
+
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div> <!-- end sidebarinner -->
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- Start right Content here -->
+
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+
+                <!-- Top Bar Start -->
+                <div class="topbar">
+
+                    <div class="topbar-left	d-none d-lg-block">
+                        <div class="text-center">
+                            <a href="#" class="logo"><img src="~/assets/images/logo.png" height="80" alt="logo"></a>
+                        </div>
+                    </div>
+
+                    <nav class="navbar-custom">
+
+                        <!-- Search input -->
+
+
+                        <ul class="list-inline float-right mb-0">
+                            <li class="list-inline-item dropdown notification-list">
+                                <a class="nav-link waves-effect toggle-search" href="#" data-target="#search-wrap">
+                                    <i class="mdi mdi-magnify noti-icon" data-container="body" data-toggle="popover" data-placement="bottom"
+                                       data-content="فیلتر"></i>
+                                </a>
+                            </li>
+
+
+
+
+                            <li class="list-inline-item dropdown notification-list nav-user">
+                                <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
+                                   aria-haspopup="false" aria-expanded="false">
+                                    <img src="~/assets/images/users/avatar-5.jpg" alt="user" class="rounded-circle">
+                                    <span class="d-none d-md-inline-block ml-1">
+
+                                       
+                                        @await Component.InvokeAsync("CurrentUser")
+
+                                        <i class="mdi mdi-chevron-down">
+                                 
+
+                                        </i>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
+                             
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-action="Logout" asp-controller="Account"><i class="dripicons-exit text-muted"></i> خروج</a> 
+                                </div>
+                            </li>
+
+                        </ul>
+
+                        <ul class="list-inline menu-left mb-0">
+                            <li class="list-inline-item">
+                                <button type="button" class="button-menu-mobile open-left waves-effect">
+                                    <i class="mdi mdi-menu"></i>
+                                </button>
+                            </li>
+
+
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+                <!-- Top Bar End -->
+
+                <div class="page-content-wrapper ">
+
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="page-title-box">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-8">
+                                            <h3 class="page-title m-0">
+
+                                                <b>
+                                                    داشبورد
+                                                </b>
+
+
+                                            </h3>
+                                        </div>
+                                        <div class="col-md-4">
+
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                                <!-- end page-title-box -->
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary mini-stat text-white">
+                                    <div class="p-3 mini-stat-desc">
+                                        <div class="clearfix">
+                                            <h6 class="text-uppercase mt-0 float-left text-white-50">
+
+                                                کل رویداد های ثبت شده :      @await Component.InvokeAsync("AllEvent")
+
+
+
+                                            </h6>
+
+                                            <h4 class="mb-3 mt-0 float-right">@await Component.InvokeAsync("AllEvent")</h4>
+                                        </div>
+                                        <div>
+
+
+
+                                            <a class="btn btn-brown btn-sm " asp-action="PublishEvent" asp-controller="Operation" asp-route-id="">
+                                                تعداد رویداد های منتشر شده  :      @await Component.InvokeAsync("EventStatusCheckd")
+
+                                            </a>
+
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="float-right">
+                                            <a href="#" class="text-white-50"><i class="mdi mdi-cube-outline h5"></i></a>
+                                        </div>
+                                        <p class="font-14 m-0">
+
+                                            <a class="btn btn-brown btn-sm " asp-action="StatuseChecked" asp-controller="Operation" asp-route-id="">
+                                                رویداد های بررسی نشده :     @await Component.InvokeAsync("EventCount")
+
+                                            </a>
+
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-info mini-stat text-white">
+                                    <div class="p-3 mini-stat-desc">
+                                        <div class="clearfix">
+                                            <h6 class="text-uppercase mt-0 float-left text-white-50">
+                                                <a class="btn btn-brown btn-sm " asp-action="EventStatuseEdit" asp-controller="Operation" asp-route-id="">
+                                                    رویداد های نیاز به تغییرات
+
+                                                </a>
+
+
+                                            </h6>
+                                            <h5 class="mb-3 mt-0 float-right">@await Component.InvokeAsync("EditEventViewComponents")</h5>
+                                        </div>
+                                        <div>
+                                            <span class="ml-2">
+
+
+                                                <a class="btn btn-brown btn-sm " asp-action="EventPayed" asp-controller="Operation" asp-route-id="">
+                                                    رویدادهای نیاز به پرداخت:
+
+                                                </a>
+
+                                            </span><span class="badge badge-light text-danger"> @await Component.InvokeAsync("PayedEventEventViewComponents") </span>
+                                        </div>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="float-right">
+
+                                        </div>
+                                        <p class="font-12 m-0">
+
+
+
+
+                                            <a class="btn btn-brown btn-sm " asp-action="EventSpecial" asp-controller="Operation" asp-route-id="">
+                                                رویداد های ویژه:
+                                                @await Component.InvokeAsync("SpecialEventViewComponents")
+
+
+                                            </a>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-pink mini-stat text-white">
+                                    <div class="p-3 mini-stat-desc">
+                                        <div class="clearfix">
+                                            <h6 class="text-uppercase mt-0 float-left text-white-50">
+
+
+                                                <a class="btn btn-brown btn-sm " asp-action="EventSlider" asp-controller="Operation" asp-route-id="">
+                                                    رویداد های اسلایدر
+
+
+                                                </a>
+
+                                            </h6>
+                                            <h4 class="mb-3 mt-0 float-right">@await Component.InvokeAsync("SliderViewComponents")</h4>
+                                        </div>
+                                        <div>
+
+
+                                            <a class="btn btn-brown btn-sm " asp-action="EventLadder" asp-controller="Operation" asp-route-id="">
+
+                                                رویداد های نردبان شده:     @await Component.InvokeAsync("LadderViewComponents")
+
+                                            </a>
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="float-right">
+                                            <a href="#" class="text-white-50"><i class="mdi mdi-tag-text-outline h5"></i></a>
+                                        </div>
+                                        <p class="font-14 m-0">
+                                            <a class="btn btn-brown btn-sm " asp-action="EventNotPublish" asp-controller="Operation" asp-route-id="">
+                                                رویداد های تایید نشده :    @await Component.InvokeAsync("NotPublishedViewComponents")
+
+
+                                            </a>
+
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success mini-stat text-white">
+                                    <div class="p-3 mini-stat-desc">
+                                        <div class="clearfix">
+                                            <h6 class="text-uppercase mt-0 float-left text-white-50">
+
+                                                <a class="btn btn-brown btn-sm " asp-action="EventDay" asp-controller="Operation" asp-route-id="">
+
+                                                    رویداد های امروز:     @await Component.InvokeAsync("EventDayViewComponents")
+
+                                                </a>
+
+
+                                            </h6>
+                                            <h4 class="mb-3 mt-0 float-right">@await Component.InvokeAsync("EventDayViewComponents")</h4>
+                                        </div>
+                                        <div>
+                                            <span class="ml-2">
+
+                                                <a class="btn btn-brown btn-sm " asp-action="EventReport" asp-controller="Home" asp-route-id="">
+
+                                                    رویداد های گزارش شده
+
+                                                </a>
+
+
+                                            </span>
+                                            <span class="badge badge-light text-info"> @await Component.InvokeAsync("ReportsViewComponents")</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="float-right">
+                                            <a href="#" class="text-white-50"><i class="mdi mdi-briefcase-check h5"></i></a>
+                                        </div>
+                                        <p class="font-14 m-0">
+                                            
+
+                                            <a class="btn btn-brown btn-sm " asp-action="TranctionEvent" asp-controller="Operation" asp-route-id="">
+
+                                                مجموع تراکنش های امروز:@await Component.InvokeAsync("TranctionViewComponents")
+
+
+                                            </a>
+
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        <div class="container">
+                            @RenderBody()
+                        </div>
+
+
+
+
+
+                    </div><!-- container fluid -->
+
+                </div> <!-- Page content Wrapper -->
+
+            </div> <!-- content -->
+
+
+
+            <footer class="footer">
+                © EventooWeb <span class="d-none d-md-inline-block">ایونتوو برای شما با شما</span>
+            </footer>
+
+        </div>
+        <!-- End Right content here -->
+
+    </div>
+
+
+
+
+
+
+    <!-- jQuery  -->
+    <script src="~/assets/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/modernizr.min.js"></script>
+    <script src="~/assets/js/detect.js"></script>
+    <script src="~/assets/js/fastclick.js"></script>
+    <script src="~/assets/js/jquery.slimscroll.js"></script>
+    <script src="~/assets/js/jquery.blockUI.js"></script>
+    <script src="~/assets/js/waves.js"></script>
+    <script src="~/assets/js/jquery.nicescroll.js"></script>
+    <script src="~/assets/js/jquery.scrollTo.min.js"></script>
+    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Responsive examples -->
+    <script src="~/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="~/plugins/datatables/responsive.bootstrap4.min.js"></script>
+
+    <!-- Datatable init js -->
+    <script src="~/assets/pages/datatables.init.js"></script>
+    @RenderSection("Script", false);
+
+
+
+    <!-- dashboard js -->
+    <script src="~/assets/pages/dashboard.int.js"></script>
+
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\bin\Debug\netcoreapp2.1\WebEventoo_DomainClasses.deps.json
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\bin\Debug\netcoreapp2.1\WebEventoo_DomainClasses.dll
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.ViewFeatures.xml
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\obj\Debug\netcoreapp2.1\WebEventoo_DomainClasses.csprojAssemblyReference.cache
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\obj\Debug\netcoreapp2.1\WebEventoo_DomainClasses.AssemblyInfoInputs.cache
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\obj\Debug\netcoreapp2.1\WebEventoo_DomainClasses.AssemblyInfo.cs
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\obj\Debug\netcoreapp2.1\WebEventoo_DomainClasses.csproj.CopyComplete
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\bin\Debug\netcoreapp2.1\WebEventoo_DomainClasses.pdb
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Identity.Stores.dll
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\bin\Debug\netcoreapp2.1\Microsoft.Extensions.Identity.Stores.xml
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\obj\Debug\netcoreapp2.1\WebEventoo_DomainClasses.dll
+D:\MvcProject\WebEvento\WebEvento\WebEventoo_DomainClass\obj\Debug\netcoreapp2.1\WebEventoo_DomainClasses.pdb

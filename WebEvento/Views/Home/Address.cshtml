@@ -1,0 +1,141 @@
+﻿@model WebEvento.ViewModel.InformationViewModel
+
+@{
+    ViewData["Title"] = "آدرس";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section ScriptMap
+{
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+}
+
+<h4>آدرس</h4>
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card m-b-20">
+            <div class="card-body">
+                <form asp-antiforgery="true">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group row" dir="rtl">
+                        <div class="col-12">
+                            <label asp-for="Adress.Name" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+                            <input asp-for="Adress.Name" class="form-control form-control-warning" />
+                            <span asp-validation-for="Adress.Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row" dir="rtl">
+                        <div class="col-12">
+                            <label asp-for="Adress.CaptionAddress" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+                            <input asp-for="Adress.CaptionAddress" class="form-control form-control-warning" />
+                            <span asp-validation-for="Adress.CaptionAddress" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row" dir="rtl">
+                        <div class="col-12">
+                            <label asp-for="Adress.AddressTwo" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+                            <input asp-for="Adress.AddressTwo" class="form-control form-control-warning" />
+                            <span asp-validation-for="Adress.AddressTwo" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-12">
+                            <input type="submit" id="btnsave" value="ذخیره " class="btn btn-danger " />
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+
+    <div class="col-lg-6">
+        <div class="card m-b-20">
+            <div class="card-body">
+
+                <h4 class="mt-0 header-title">Overlays</h4>
+                <p class="text-muted m-b-30">  با جابجایی مارکر مکان خود را مشخص کنید </p>
+
+                <div id="maps" class="gmaps"></div>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+@section Script{
+
+
+    <script type="text/javascript">
+
+        $('#btnsave').click(function(evt) {
+  evt.preventDefault();
+
+  var payload = $('form').serialize();
+
+  $.ajax({
+    url: '@Url.Action("Address", "Home")',
+     type: 'POST',
+     data: payload,
+     success: function (result) {
+         //success
+       alert(result);
+
+     },
+     error: function (error) {
+       //error
+     }
+  });
+        });
+
+
+        var options = {
+            center: [29.62422, 52.53170],
+            zoom: 18
+
+        }
+
+        var map = L.map('maps', options);
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'OSM' })
+            .addTo(map);
+
+        var myMarker = L.marker([29.62422, 52.53170], { title: "نشانگر من", alt: "از اینجا", draggable: true })
+            .addTo(map)
+            .on('dragend', function () {
+
+
+                var coord = String(myMarker.getLatLng()).split(',');
+                console.log(coord);
+                var lat = coord[0].split('(');
+                console.log(lat);
+                var lng = coord[1].split(')');
+                console.log(lng);
+                //alert("You clicked the map at LAT: " + lat[1] + " and LONG: " + lng[0]);
+
+                myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
+
+                var requestData = {
+                    lati: lat[1],
+                    longi: lng[0]
+                };
+
+
+                $.ajax({
+                    url: '/Home/GetMap',
+                    type: 'POST',
+                    data: requestData,
+                    dataType: 'json'
+                });
+
+            });
+    </script>
+}
+
+

@@ -1,0 +1,37 @@
+﻿
+@model WebEvento.ViewModel.InformationViewModel
+
+<div class="table-rep-plugin">
+    <div class="table-responsive b-0" data-pattern="priority-columns">
+        <table id="tech-companies-1" class="table  table-striped">
+            <thead>
+                <tr>
+                    <th>شرکت</th>
+                    <th data-priority="1">   @Html.DisplayNameFor(model => model.Exhibition.Name)</th>
+                    <th data-priority="3">@Html.DisplayNameFor(model => model.Exhibition.Type)</th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <th>@Html.DisplayNameFor(model => model.Exhibition.Name)</th>
+                    @foreach (var item in Model.ExhibitionList)
+                    {
+                        <td>@item.Name</td>
+                        <td>@item.Type</td>
+                        @Html.ActionLink("حذف", "EditExhibition", "About")
+                        @Html.ActionLink("ویرایش", "EditExhibition", "Edit")
+
+                    }
+
+                </tr>
+             
+            
+          
+          
+            </tbody>
+        </table>
+    </div>
+
+</div>

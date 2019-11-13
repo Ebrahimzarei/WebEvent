@@ -1,0 +1,260 @@
+﻿@model WebEvento.ViewModel.InformationViewModel
+@{
+    ViewData["Title"] = "بیشتر";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section ScriptMap
+{
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card m-b-30">
+            <div class="card-body">
+
+                <h4 class="mt-0 header-title">بیشتر</h4>
+
+                <div class="form-group">
+                    <label>   @Html.DisplayNameFor(model => model.Event.Address)</label>
+                    @foreach (var item in Model.Event.Address)
+                    {
+                        <p class="form-control" type="text" readonly>
+                            @item.CaptionAddress
+                        </p>
+                    }
+
+                </div>
+                <div class="form-group">
+                    <label>@Html.DisplayNameFor(model => model.Event.AddressUrl)</label>
+                    <input asp-for="Event.AddressUrl" class="form-control" type="text" readonly />
+                </div>
+                @if (Model.Event.Cermoney != null)
+                {
+                    <div class="form-group">
+
+                        <label>   @Html.DisplayNameFor(model => model.Event.Cermoney)</label>
+                        @foreach (var item in Model.Event.Cermoney)
+                        {
+                            <p class="form-control" type="text">
+                                @item.Name
+
+
+                            </p>
+
+                            <p class="form-control" type="text">
+                                @item.Type.GetDisplayName()
+
+
+                            </p>
+
+
+                        }
+
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label>   @Html.DisplayNameFor(model => model.Event.Description)</label>
+                    <input asp-for="Event.Description" class="form-control" type="text" readonly />
+                </div>
+                @if (Model.Event.Eduction.Count > 0)
+                {
+
+
+                    <div class="form-group">
+                        <label>   @Html.DisplayNameFor(model => model.Event.Eduction)</label>
+                        @foreach (var item in Model.Event.Eduction)
+                        {
+
+
+                            <p class="form-control" type="text">
+                                @item.Type.GetDisplayName()
+                            </p>
+
+                        }
+
+                    </div>
+                }
+                @if (Model.Event.Exhibotion.Count > 0)
+                {
+                    <div class="form-group">
+
+                        <label>   @Html.DisplayNameFor(model => model.Event.Exhibotion)</label>
+                        @foreach (var item in Model.Event.Exhibotion)
+                        {
+
+                            <p class="form-control" type="text" readonly>
+                                @item.Name
+                            </p>
+                            <p class="form-control" type="text" readonly>
+                                @item.Type.GetDisplayName()
+                            </p>
+
+                        }
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label>   @Html.DisplayNameFor(model => model.Event.FromDate)</label>
+                    <p class="form-control" type="text" readonly>
+                        @Model.Event.FromDate
+
+                    </p>
+
+                </div>
+                <div class="form-group">
+                    <label>   @Html.DisplayNameFor(model => model.Event.ToDate)</label>
+                    <p class="form-control" type="text" readonly>
+                        @Model.Event.ToDate
+                    </p>
+
+                </div>
+                <div class="form-group">
+                    <label>   @Html.DisplayNameFor(model => model.Event.OtherLonging)</label>
+                    <p class="form-control" type="text" readonly>
+                        @Model.Event.OtherLonging
+                    </p>
+
+                </div>
+                <div class="form-group">
+                    <label>   @Html.DisplayNameFor(model => model.Event.Place)</label>
+                    @foreach (var item in Model.Event.Place)
+                    {
+                        <p class="form-control" type="text" readonly>
+                            @item.Name
+                        </p>
+
+
+                    }
+                </div>
+                <div class="form-group">
+                    <label>   @Html.DisplayNameFor(model => model.Event.Price)</label>
+                    <p class="form-control" type="text" readonly>
+                        @Model.Event.Price
+                    </p>
+
+                </div>
+                <div class="form-group">
+                    <label>   @Html.DisplayNameFor(model => model.Event.Tell)</label>
+                    <input asp-for="Event.Tell" class="form-control" type="text" readonly />
+                </div>
+                <div class="form-group">
+                    <label>   @Html.DisplayNameFor(model => model.Event.TypeCaption)</label>
+                    <input asp-for="Event.TypeCaption" class="form-control" type="text" readonly />
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="card m-b-30">
+            <div class="card-body">
+
+                <h4 class="mt-0 header-title">موقعیت نقشه</h4>
+                <div class="card-body">
+
+
+                    <div id="maps" class="gmaps"></div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card m-b-30">
+            <div class="card-body">
+
+            
+
+                <div class="container">
+
+                    <h1 class="font-weight-light text-center text-lg-right mt-4 mb-0">تصاویررویداد</h1>
+
+                    <hr class="mt-2 mb-5">
+
+                    <div class="row text-center text-lg-left">
+                        @{
+
+                            foreach (var item in Model.Event.Image)
+                            {
+                                var base64 = Convert.ToBase64String(item.ImageData);
+                                var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                              
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <a href="@imgSrc" class="d-block mb-4 h-100">
+                                        <img class="img-fluid img-thumbnail" src="@imgSrc" alt="">
+                                    </a>
+                                </div>
+                            }
+
+
+                        }
+
+                      
+                    </div>
+
+                </div>
+                   
+             
+
+
+           
+
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Script{
+
+ 
+
+ 
+
+    <script type="text/javascript">
+       @{
+
+    double lattiude = 29.62422;
+    double longttiude = 52.53170;
+           @*@foreach (var item in Model.Event.Address)
+           {
+               lattiude = item.Lattiude;
+               longttiude = item.Longtiude;
+           }*@
+}
+        var options = {
+     
+            
+        center: [@lattiude, @longttiude],
+            zoom: 18
+
+        }
+
+        var map = L.map('map', options);
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'OSM' })
+            .addTo(map);
+
+
+
+        var myMarker = L.marker([@lattiude, @longttiude], { title: "MyPoint", alt: "The Big I", draggable: true })
+            .addTo(map)
+            .on('dragend', function () {
+                var coord = String(myMarker.getLatLng()).split(',');
+                console.log(coord);
+                var lat = coord[0].split('(');
+                console.log(lat);
+                var lng = coord[1].split(')');
+                console.log(lng);
+                myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
+            });
+        $(function () {
+$("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+});
+
+    </script>
+}

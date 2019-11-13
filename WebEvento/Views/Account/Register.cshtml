@@ -1,0 +1,114 @@
+﻿@model WebEvento.ViewModel.InformationViewModel
+@using WebEventoo_DomainClasses.Model;
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Account.cshtml";
+}
+
+<div class="account-pages">
+
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 offset-lg-1">
+                <div class="text-left">
+                    <div>
+                        <a href="index-2.html" class="logo logo-admin"><img src="assets/images/logo_dark.png" height="28" alt="logo"></a>
+                    </div>
+                    <h5 class="font-14 text-muted mb-4">با ایونتوو رویداد های شیراز را کنترل کنید</h5>
+                    <p class="text-muted mb-4">با ایونتوو رویداد های شیراز را کنترل کنید</p>
+
+                    <h5 class="font-14 text-muted mb-4">مقررات :</h5>
+                    <div>
+                        <p><i class="mdi mdi-arrow-right text-primary mr-2"></i>با ایونتوو رویداد های شیراز را کنترل کنید</p>
+                        <p><i class="mdi mdi-arrow-right text-primary mr-2"></i>با ایونتوو رویداد های شیراز را کنترل کنید</p>
+                        <p><i class="mdi mdi-arrow-right text-primary mr-2"></i>با ایونتوو رویداد های شیراز را کنترل کنید</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="p-2">
+                            <h4 class="text-muted float-right font-18 mt-4">ثبت نام</h4>
+                            <div>
+                                <a href="index-2.html" class="logo logo-admin"><img src="assets/images/logo_dark.png" height="28" alt="logo"></a>
+                            </div>
+                        </div>
+
+                        <div class="p-2">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <form class="form-horizontal m-t-20">
+
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input class="form-control" asp-for="Users.UserName" required="" placeholder="نام کاربری">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input class="form-control" asp-for="Users.Password" type="password" required="" placeholder="رمز عبور">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input class="form-control" asp-for="Users.EmailUser" required="" placeholder="ایمیل">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group text-center row m-t-20">
+                                    <div class="col-12">
+                                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit" id="btnsave">ثبت نام</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-t-10 mb-0 row" >
+                                    <div class="col-12 m-t-20 text-center">
+                                        <a asp-action="Login" asp-controller="Account" class="text-muted">در حال حاضر حساب کاربری دارید؟</a>
+                                    </div>
+                                </div>
+                               
+                              
+                           
+                            </form>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+</div>
+@section Script{
+    <script type="text/javascript">
+                $('#btnsave').click(function(evt) {
+  evt.preventDefault();
+
+  var payload = $('form').serialize();
+
+  $.ajax({
+    url: '@Url.Action("Register", "Account")',
+     type: 'POST',
+     data: payload,
+     success: function (result) {
+         //success
+         alert(result);
+      
+
+     },
+     error: function (error) {
+       //error
+           alert(error);
+     }
+  });
+        });
+    </script>
+}
+

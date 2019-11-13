@@ -1,0 +1,69 @@
+﻿@model WebEvento.ViewModel.InformationViewModel
+@{
+    ViewData["Title"] = "ویرایش رنگ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>ویرایش رنگ</h4>
+<div>
+    <div class="account-pages">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="card mb-0">
+                        <div class="card-body">
+                            <div class="p-2">
+                                <form method="post" asp-antiforgery="true">
+
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group row" dir="rtl">
+                                        <div class="col-12">
+                                            <label asp-for="Colors.ColorButton" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+                                            <input asp-for="Colors.ColorButton" class="form-control form-control-success" />
+                                            <span asp-validation-for="Colors.ColorButton" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <label asp-for="Colors.ColorFooter" class="control-label" style=" FLOAT: right"></label>
+                                            <input asp-for="Colors.ColorFooter" class="form-control form-control-success" />
+                                            <span asp-validation-for="Colors.ColorFooter" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <label asp-for="Colors.ColorHeader" class="control-label" style=" FLOAT: right"></label>
+                                            <input asp-for="Colors.ColorHeader" class="form-control form-control-success" />
+                                            <span asp-validation-for="Colors.ColorHeader" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <label asp-for="Colors.ColorSubContetntView" class="control-label" style=" FLOAT: right"></label>
+                                            <input asp-for="Colors.ColorSubContetntView" class="form-control form-control-success" />
+                                            <span asp-validation-for="Colors.ColorSubContetntView" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-12">
+                                            <input type="submit" value="ذخیره " class="btn btn-danger" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</div>

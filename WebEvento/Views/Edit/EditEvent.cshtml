@@ -1,0 +1,427 @@
+﻿@model WebEvento.ViewModel.InformationViewModel
+@{
+    ViewData["Title"] = "ویرایش رویداد";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section ScriptMap
+{
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+}
+<h4>ویرایش رویداد</h4>
+<div>
+    <div class="account-pages">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="card mb-0">
+                        <div class="card-body">
+                            <div class="p-2">
+                                <form method="post" asp-antiforgery="true">
+
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <label asp-for="Event.Type" class="control-label" style=" FLOAT: right"></label>
+                                            @*<input asp-for="Exhibition.Type" class="form-control" />*@
+                                            <select asp-for="Event.Type" class="form-control form-control-success">
+                                                <option value="0">@WebEventoo_DomainClasses.Model.Event.TypeEvent.Cultrual.GetDisplayName()</option>
+                                                <option value="1"> @WebEventoo_DomainClasses.Model.Event.TypeEvent.Toursm.GetDisplayName()</option>
+                                                <option value="2">@WebEventoo_DomainClasses.Model.Event.TypeEvent.Sport.GetDisplayName()</option>
+                                                <option value="3">@WebEventoo_DomainClasses.Model.Event.TypeEvent.Sciences.GetDisplayName()</option>
+                                                <option value="4">@WebEventoo_DomainClasses.Model.Event.TypeEvent.Religuse.GetDisplayName()</option>
+                                                <option value="5">@WebEventoo_DomainClasses.Model.Event.TypeEvent.Public.GetDisplayName()</option>
+
+                                            </select>
+
+                                            <span asp-validation-for="Event.Type" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label asp-for="Event.TypeCaption" class="control-label" style=" FLOAT: right"></label>
+                                        @*<input asp-for="Exhibition.Type" class="form-control" />*@
+                                        <select asp-for="Event.TypeCaption" class="form-control dropdown" id="type">
+                                            <option> لطفا یک گزینه را انتخاب کنید</option>
+                                            <option value="0">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.cultrualExhibition.GetDisplayName()</option>
+                                            <option value="1">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.cultrualCinema.GetDisplayName()</option>
+                                            <option value="2">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.cultrualconcert.GetDisplayName()</option>
+                                            <option value="3">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.cultrualGallery.GetDisplayName()</option>
+                                            <option value="4">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.cultrualcermoney.GetDisplayName()</option>
+                                            <option value="5">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.cultrualGravity.GetDisplayName()</option>
+
+
+                                            <option value="6">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.sportgymclub.GetDisplayName()</option>
+                                            <option value="7">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.sportball.GetDisplayName()</option>
+                                            <option value="8">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.sportwater.GetDisplayName()</option>
+                                            <option value="9">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.sportmartial.GetDisplayName()</option>
+
+                                            <option value="10">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.academicexhibition.GetDisplayName()</option>
+                                            <option value="11">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.academicconferance.GetDisplayName()</option>
+
+                                            <option value="12">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.academiccermoney.GetDisplayName()</option>
+                                            <option value="13">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.popularexhibition.GetDisplayName()</option>
+                                            <option value="14">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.populargathering.GetDisplayName()</option>
+                                            <option value="15">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.popularhelping.GetDisplayName()</option>
+
+
+                                            <option value="16">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.tourismtour.GetDisplayName()</option>
+
+                                            <option value="17">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.tourismgravity.GetDisplayName()</option>
+                                            <option value="18">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.foodsexhibition.GetDisplayName()</option>
+                                            <option value="19">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.foodscoffe.GetDisplayName()</option>
+                                            <option value="20">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.foodsresturant.GetDisplayName()</option>
+                                            <option value="21">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.foodsfastfood.GetDisplayName()</option>
+                                            <option value="22">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.religionexhibition.GetDisplayName()</option>
+
+                                            <option value="23">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.religioncermoney.GetDisplayName()</option>
+                                            <option value="24">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.healthitemone.GetDisplayName()</option>
+                                            <option value="35">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearntourism.GetDisplayName()</option>
+                                            <option value="25">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnsport.GetDisplayName()</option>
+                                            <option value="26">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnfood.GetDisplayName()</option>
+                                            <option value="27">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnreligion.GetDisplayName()</option>
+                                            <option value="28">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnskill.GetDisplayName()</option>
+                                            <option value="29">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnlesson.GetDisplayName()</option>
+                                            <option value="30">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnlanguage.GetDisplayName()</option>
+                                            <option value="31">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnsadvice.GetDisplayName()</option>
+                                            <option value="32">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearncultrual.GetDisplayName()</option>
+                                            <option value="33">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnmedical.GetDisplayName()</option>
+                                            <option value="34">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnperfect.GetDisplayName()</option>
+                                            <option value="35">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnmusic.GetDisplayName()</option>
+                                            <option value="36">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnphoto.GetDisplayName()</option>
+                                            <option value="37">@WebEventoo_DomainClasses.Model.Event.TypeCaptionEvent.classlearnorkshop.GetDisplayName()</option>
+
+
+
+
+
+                                        </select>
+
+                                        <span asp-validation-for="Event.TypeCaption" class="text-danger"></span>
+                                    </div>
+                                    @* نمایشگاه *@
+                                    <div class="form-group row" id="typeexhibition" style="display:none">
+                                        <div class="col-12">
+                                            <label asp-for="Event.Exhibotion" class="control-label" style=" FLOAT: right"></label>
+                                            <select asp-for="ExhibitionCode" asp-items="@Model.Select" class="form-control dropdown">
+                                                <option> لطفا یک گزینه را انتخاب کنید</option>
+                                            </select>
+                                            <span asp-validation-for="Event.Exhibotion" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row" id="typecermoney" style="display:none">
+                                        <div class="col-12">
+                                            <label asp-for="Event.Cermoney" class="control-label" style=" FLOAT: right"></label>
+                                            <select asp-for="CermoneyCode" asp-items="@Model.SelectCermoney" class="form-control dropdown">
+                                                <option> لطفا یک گزینه را انتخاب کنید</option>
+                                            </select>
+                                            <span asp-validation-for="Event.Cermoney" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row" dir="rtl">
+                                        <div class="col-12">
+                                            <label asp-for="Event.CaptionEvent" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+                                            <input asp-for="Event.CaptionEvent" class="form-control form-control-success" />
+                                            <span asp-validation-for="Event.CaptionEvent" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+
+
+
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label asp-for="Event.Place" class="control-label" style=" FLOAT: right"></label>
+                                                <select asp-for="PlaceCode" asp-items="@Model.SelectPlace" class="form-control dropdown">
+                                                    <option> لطفا یک گزینه را انتخاب کنید</option>
+                                                </select>
+                                                <span asp-validation-for="Event.Place" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label asp-for="Event.Address" class="control-label" style=" FLOAT: right"></label>
+                                                <select asp-for="AddressCode" asp-items="@Model.SelectAddress" class="form-control dropdown">
+                                                    <option> لطفا یک گزینه را انتخاب کنید</option>
+                                                </select>
+                                                <span asp-validation-for="Event.Address" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label asp-for="Event.Payed" class="control-label" style=" FLOAT: right"></label>
+                                                <select asp-for="Event.Type" class="form-control form-control-success">
+                                                    <option value="0">@WebEventoo_DomainClasses.Model.Event.Cost.AddCost.GetDisplayName()</option>
+                                                    <option value="1"> @WebEventoo_DomainClasses.Model.Event.Cost.NotCost.GetDisplayName()</option>
+                                                    <option value="2">@WebEventoo_DomainClasses.Model.Event.Cost.Free.GetDisplayName()</option>
+
+                                                </select>
+                                                <span asp-validation-for="Event.Type" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group row" dir="rtl">
+                                                <div class="col-12">
+                                                    <label asp-for="Event.FromDate" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+
+                                                    <input asp-for="Event.FromDate" class="form-control " />
+                                                    <span asp-validation-for="Event.FromDate" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" dir="rtl">
+                                                <div class="col-12">
+                                                    <label asp-for="Event.OtherLonging" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+
+                                                    <input asp-for="Event.OtherLonging" class="form-control " />
+                                                    <span asp-validation-for="Event.OtherLonging" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row" dir="rtl">
+                                                <div class="col-12">
+                                                    <label asp-for="Event.ToDate" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+
+
+                                                    <input asp-for="Event.ToDate" class="form-control " />
+
+                                                    <span asp-validation-for="Event.ToDate" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" dir="rtl">
+                                            <div class="col-12">
+                                                <label asp-for="Event.Description" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+                                                <input asp-for="Event.Description" class="form-control form-control-success" />
+                                                <span asp-validation-for="Event.Description" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" dir="rtl">
+                                            <div class="col-12">
+                                                <label asp-for="Event.AddressUrl" class="control-label" dir="rtl" style=" FLOAT: right"></label>
+                                                <input asp-for="Event.AddressUrl" class="form-control form-control-success" />
+                                                <span asp-validation-for="Event.AddressUrl" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <input type="submit" value="ذخیره " class="btn btn-danger" id="ok" />
+                                            </div>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card m-b-40" style="width:500px;margin-top:20px">
+                <div class="card-body">
+
+                    <h4 class="mt-0 header-title">موقعیت نقشه</h4>
+                    <div class="card-body">
+
+
+                        <div id="maps" class="gmaps"></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6" style="margin-top:20px">
+            <div class="card m-b-30">
+                <div class="card-body">
+
+
+
+                    <div class="container">
+
+                        <h1 class="font-weight-light text-center text-lg-right mt-4 mb-0">تصاویررویداد</h1>
+
+                        <hr class="mt-2 mb-5">
+
+                        <div class="row text-center text-lg-left">
+                            @{
+
+                                foreach (var item in Model.Event.Image)
+                                {
+                                    var base64 = Convert.ToBase64String(item.ImageData);
+                                    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+
+                                    <div class="col-lg-3 col-md-4 col-6">
+                                        <a href="@imgSrc" class="d-block mb-4 h-100">
+                                            <img class="img-fluid img-thumbnail" src="@imgSrc" alt="">
+                                        </a>
+                                    </div>
+                                }
+
+
+                            }
+
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+@section Script{
+    <script src="~/js/PersianDatePicker.min.js"></script>
+    @*<script>
+            $('#type').change(function () {
+                if ($('#type').val() == '0') {
+
+                    $('#typeexhibition').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '7') {
+
+                    $('#typeexhibition').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '14') {
+
+                    $('#typeexhibition').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '21') {
+
+                    $('#typeexhibition').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '23') {
+
+                    $('#typeexhibition').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '27') {
+
+                    $('#typeexhibition').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '4') {
+
+                    $('#typecermoney').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '12') {
+
+                    $('#typecermoney').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '17') {
+
+                    $('#typecermoney').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '18') {
+
+                    $('#typecermoney').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+                if ($('#type').val() == '23') {
+
+                    $('#typecermoney').show();
+
+                } else {
+                    $('#typecermoney').hide();
+                }
+            });
+        </script>*@
+
+<script type="text/javascript">
+       @{
+
+    double lattiude = 29.62422;
+    double longttiude = 52.53170;
+           @*@foreach (var item in Model.Event.Address)
+           {
+               lattiude = item.Lattiude;
+               longttiude = item.Longtiude;
+           }*@
+}
+        var options = {
+
+
+        center: [@lattiude, @longttiude],
+            zoom: 18
+
+        }
+
+        var map = L.map('map', options);
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'OSM' })
+            .addTo(map);
+
+
+
+        var myMarker = L.marker([@lattiude, @longttiude], { title: "MyPoint", alt: "The Big I", draggable: true })
+            .addTo(map)
+            .on('dragend', function () {
+                var coord = String(myMarker.getLatLng()).split(',');
+                console.log(coord);
+                var lat = coord[0].split('(');
+                console.log(lat);
+                var lng = coord[1].split(')');
+                console.log(lng);
+                myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
+            });
+        $(function () {
+$("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+});
+
+</script>
+
+}
+
+<!-- Collapse button -->
