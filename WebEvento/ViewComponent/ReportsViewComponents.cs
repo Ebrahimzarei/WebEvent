@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +14,27 @@ namespace WebEvento.ViewComponents
     public class ReportsViewComponents : Microsoft.AspNetCore.Mvc.ViewComponent
     {
         ViewModel.InformationViewModel vmodel;
-        WebDbContext db;
-        public ReportsViewComponents(WebDbContext Dbcontext)
+        private readonly IServiceProvider _serviceProvider;
+        public ReportsViewComponents(IServiceProvider serviceProvide)
         {
-            db = Dbcontext;
+            _serviceProvider = serviceProvide;
             vmodel = new ViewModel.InformationViewModel();
         }
         public IViewComponentResult Invoke()
         {
-         
-           
+            int? count;
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var dataContext = scope.ServiceProvider.GetRequiredService<WebDbContext>();
 
-            var obj = db.Report.Where(x=>x.RoleReport==WebEventoo_DomainClasses.Model.Report.TypeReport.ReportEvent);
+                count = dataContext.Report.Where(x => x.RoleReport == WebEventoo_DomainClasses.Model.Report.TypeReport.ReportEvent).ToList().Count();
+            }
 
-            vmodel.StatuseCheckedviewcomponent = obj.ToList().Count;
+
+            vmodel.StatuseCheckedviewcomponent = count;
+
+
+          
             return Content(vmodel.StatuseCheckedviewcomponent.ToString());
 
 

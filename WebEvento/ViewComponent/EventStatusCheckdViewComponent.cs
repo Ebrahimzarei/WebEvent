@@ -1,31 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebEvento.Cashing;
 using WebEvento.Data;
 
 namespace WebEvento.ViewComponents
 {
     public class EventStatusCheckdViewComponent:ViewComponent
     {
-        WebDbContext db;
-      
-        public EventStatusCheckdViewComponent(WebDbContext Dbcontext)
+   
+
+        private readonly CacheManager _cacheManager;
+
+        public EventStatusCheckdViewComponent(CacheManager cacheManager)
         {
-            db = Dbcontext;
-         
+
+            _cacheManager = cacheManager;
 
         }
         //رویداد های بررسی شده
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-
-            var obj = db.Event.Where(p => p.StatuseChecked == true);
-            int? count = obj.ToList().Count;
+        
 
 
-            return Content(count.ToString());
+            var menuItems = await _cacheManager.GetMenuItemsAsync();
+            var obj = menuItems.Where(p => p.StatuseChecked == true).ToList().Count();
+
+
+
+
+            return Content(obj.ToString());
          
 
 

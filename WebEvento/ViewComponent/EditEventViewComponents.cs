@@ -1,30 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebEvento.Cashing;
 using WebEvento.Data;
 
 namespace WebEvento.ViewComponents
 {
     public class EditEventViewComponents: ViewComponent
     {
-        WebDbContext db;
-        ViewModel.InformationViewModel vmodel;
-        public EditEventViewComponents(WebDbContext Dbcontext)
+
+        private readonly CacheManager _cacheManager;
+        public EditEventViewComponents(CacheManager cacheManager)
         {
-            db = Dbcontext;
-            vmodel = new ViewModel.InformationViewModel();
+            _cacheManager = cacheManager;
+          
+      
 
         }
         //رویداد های نیاز به تغییرات
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
+    
+              //  var obj = dataContext.Event.Where(p => p.Statusevent == WebEventoo_DomainClasses.Model.Event.StatuseEvent.IsEdit);
+                var menuItems = await _cacheManager.GetMenuItemsAsync();
+                var obj = menuItems.Where(p => p.Statusevent == WebEventoo_DomainClasses.Model.Event.StatuseEvent.IsEdit).ToList().Count();
+            
+         
 
-            var obj = db.Event.Where(p => p.Statusevent==WebEventoo_DomainClasses.Model.Event.StatuseEvent.IsEdit);
 
-            vmodel.StatuseCheckedviewcomponent = obj.ToList().Count;
-            return Content(vmodel.StatuseCheckedviewcomponent.ToString());
+      
+
+           
+       
+            return Content(obj.ToString());
 
 
 

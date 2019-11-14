@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using WebEvento.Cashing;
 using WebEvento.Data;
  
 
@@ -14,26 +16,29 @@ namespace WebEvento.ViewComponents
     /// </summary>
     public class EventDayViewComponents : Microsoft.AspNetCore.Mvc.ViewComponent
     {
-        WebDbContext db;
-        ViewModel.InformationViewModel vmodel;
-        public EventDayViewComponents(WebDbContext Dbcontext)
+
+        private readonly CacheManager _cacheManager;
+        public EventDayViewComponents(CacheManager cacheManager)
         {
-            db = Dbcontext;
-            vmodel = new ViewModel.InformationViewModel();
+            _cacheManager = cacheManager;
         }
         //تعداد   رویداد های  امروز
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
 
             PersianCalendar pc = new PersianCalendar();
             string PDate = pc.GetYear(DateTime.Now).ToString() + "/" + pc.GetMonth(DateTime.Now).ToString() + "/" + pc.GetDayOfMonth(DateTime.Now).ToString();
 
-           
+          
 
-            var obj = db.Event.Where(x=>x.TimeEvent== PDate);
 
-            vmodel.StatuseCheckedviewcomponent = obj.ToList().Count;
-            return Content(vmodel.StatuseCheckedviewcomponent.ToString());
+            var menuItems = await _cacheManager.GetMenuItemsAsync();
+            var obj = menuItems.Where(x => x.TimeEvent == PDate).Count();
+
+
+
+
+            return Content(obj.ToString());
 
 
 

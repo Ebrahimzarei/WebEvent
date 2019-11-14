@@ -12,14 +12,14 @@ namespace WebEvento.ViewComponents
 {
     public class CurrentUser: ViewComponent
     {
-      
-        string UserId;
+      //بدست اوردن نام کاربری لاگین شده
+        //string UserId;
         public readonly UserManager<Users> _userManager;
         private readonly SignInManager<Users> signInManager;
         public CurrentUser(IHttpContextAccessor httpContextAccessor, UserManager<Users> userManager, SignInManager<Users> _signInManager)
         {
           
-            UserId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            //UserId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             _userManager = userManager;
             signInManager = _signInManager;
         }

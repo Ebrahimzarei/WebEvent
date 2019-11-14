@@ -1,32 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebEvento.Cashing;
 using WebEvento.Data;
 
 namespace WebEvento.ViewComponents
 {
     public class SliderViewComponents:ViewComponent
     {
-        WebDbContext db;
-        ViewModel.InformationViewModel vmodel;
-        public SliderViewComponents(WebDbContext Dbcontext)
+
+        private readonly CacheManager _cacheManager;
+        public SliderViewComponents(CacheManager cacheManager)
         {
-            db = Dbcontext;
-            vmodel = new ViewModel.InformationViewModel();
+            _cacheManager = cacheManager;
 
         }
         //تعداد رویداد های اسلایدر
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var m = DateTime.Now.ToString();
+   
+
+            var menuItems = await _cacheManager.GetMenuItemsAsync();
+            var obj = menuItems.Where(p => p.Statusevent == WebEventoo_DomainClasses.Model.Event.StatuseEvent.Slider).ToList().Count();
+
+          
 
 
-            var obj = db.Event.Where(p => p.Statusevent==WebEventoo_DomainClasses.Model.Event.StatuseEvent.Slider);
-
-            vmodel.StatuseCheckedviewcomponent = obj.ToList().Count;
-            return Content(vmodel.StatuseCheckedviewcomponent.ToString());
+         
+            return Content(obj.ToString());
 
 
 

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebEvento.Cashing;
 using WebEvento.Data;
 using WebEventoo_DomainClasses.Model;
 using WebEventoo_DomainClasses.Services;
@@ -12,23 +14,23 @@ namespace WebEvento.ViewComponents
     //رویداد های نردبان شده
     public class LadderViewComponents:ViewComponent
     {
-        ViewModel.InformationViewModel vmodel;
-        WebDbContext WebDbContext;
-        public LadderViewComponents(WebDbContext  DbContext)
+
+        private readonly CacheManager _cacheManager;
+        public LadderViewComponents(CacheManager cacheManager)
         {
-            WebDbContext =  DbContext;
-            vmodel = new ViewModel.InformationViewModel();
+            _cacheManager = cacheManager;
         }
         //رویداد های نردبان شده
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
+         
 
-            var obj = WebDbContext.Event.Where(x=>x.Statusevent==Event.StatuseEvent.Ladder).ToList();
-           
- 
-           
-            vmodel.StatuseCheckedviewcomponent = obj.Count;
-            return Content(vmodel.StatuseCheckedviewcomponent.ToString());
+
+            var menuItems = await _cacheManager.GetMenuItemsAsync();
+            var obj = menuItems.Where(x => x.Statusevent == Event.StatuseEvent.Ladder).ToList().Count();
+
+
+            return Content(obj.ToString());
 
 
 

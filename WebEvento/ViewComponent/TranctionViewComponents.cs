@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,11 +14,12 @@ namespace WebEvento.ViewComponents
     /// </summary>
     public class TranctionViewComponents : Microsoft.AspNetCore.Mvc.ViewComponent
     {
+
+        private readonly IServiceProvider _serviceProvider;
         ViewModel.InformationViewModel vmodel;
-        WebDbContext db;
-        public TranctionViewComponents(WebDbContext Dbcontext)
+        public TranctionViewComponents(IServiceProvider serviceProvide)
         {
-            db = Dbcontext;
+            _serviceProvider = serviceProvide;
             vmodel = new ViewModel.InformationViewModel();
         }
         public IViewComponentResult Invoke()
@@ -30,10 +32,20 @@ namespace WebEvento.ViewComponents
 
                 string PersianDate = string.Format("{0}/{1}/{2}", pc.GetYear(dt), pc.GetMonth(dt), pc.GetDayOfMonth(dt));
 
+ 
 
-            var obj = db.TranctionEvent.Where(x => x.DateTime == PersianDate);
+            int? count;
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var dataContext = scope.ServiceProvider.GetRequiredService<WebDbContext>();
 
-            vmodel.StatuseCheckedviewcomponent = obj.ToList().Count;
+                count = dataContext.TranctionEvent.Where(x => x.DateTime == PersianDate).ToList().Count();
+            }
+
+
+            vmodel.StatuseCheckedviewcomponent = count;
+
+           
             return Content(vmodel.StatuseCheckedviewcomponent.ToString());
         }
         }

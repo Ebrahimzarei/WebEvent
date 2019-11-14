@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using WebEvento.Cashing;
 using WebEvento.Data;
 
 namespace WebEvento.ViewComponents
@@ -8,22 +10,25 @@ namespace WebEvento.ViewComponents
 
     public class EventCountViewComponent : ViewComponent
     {
-        WebDbContext db;
-        ViewModel.InformationViewModel vmodel;
-        public EventCountViewComponent(WebDbContext Dbcontext)
-        {
-            db = Dbcontext;
-            vmodel = new ViewModel.InformationViewModel();
 
+        private readonly CacheManager _cacheManager;
+        WebEvento.ViewModel.InformationViewModel vmodel;
+        public EventCountViewComponent(CacheManager cacheManager)
+        {
+            _cacheManager= cacheManager;
+            vmodel = new ViewModel.InformationViewModel();
         }
         //رویداد های بررسی نشده
-        public IViewComponentResult Invoke()
+        public async System.Threading.Tasks.Task<IViewComponentResult> InvokeAsync()
         {
-       
-            var obj = db.Event.Where(p => p.StatuseChecked != true);
-           
-                vmodel.StatuseCheckedviewcomponent = obj.ToList().Count;
-                return View(vmodel);
+
+
+            var menuItems = await _cacheManager.GetMenuItemsAsync();
+            var obj = menuItems.Where(p => p.StatuseChecked != true).Count();
+            vmodel.StatuseCheckedviewcomponent = obj;
+            return Content(obj.ToString());
+
+         //   return View(vmodel.StatuseCheckedviewcomponent);
            
 
            

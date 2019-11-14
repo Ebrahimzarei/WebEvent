@@ -127,7 +127,7 @@ namespace AspNetCore
             WriteLiteral("</td>\r\n            <td>\r\n                ");
             EndContext();
             BeginContext(835, 84, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ac1840fc33044c9af119b53b385bded", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff42cdb7d38748eeb468d21da689a1c6", async() => {
                 BeginContext(909, 6, true);
                 WriteLiteral("ویرایش");
                 EndContext();
@@ -164,7 +164,7 @@ namespace AspNetCore
             WriteLiteral(" |\r\n\r\n                ");
             EndContext();
             BeginContext(941, 154, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61133de901634dbd8e70c965e0801469", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d2a857a34ae4b6da0570fbc0b180535", async() => {
                 BeginContext(1088, 3, true);
                 WriteLiteral("حذف");
                 EndContext();

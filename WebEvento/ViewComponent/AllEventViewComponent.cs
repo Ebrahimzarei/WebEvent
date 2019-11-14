@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
  
 using System.Linq;
 using System.Threading.Tasks;
+using WebEvento.Cashing;
 using WebEvento.Data;
 using WebEventoo_DomainClasses.Services;
 
@@ -10,28 +12,28 @@ namespace WebEvento.ViewComponents
 {
     public class AllEventViewComponent:ViewComponent
     {
-        WebDbContext db;
-      
-        ViewModel.InformationViewModel vmodel;
-        public AllEventViewComponent(WebDbContext Dbcontext)
+        //تعداد کل رویداد ها
+        private readonly CacheManager _cacheManager;
+        public AllEventViewComponent(CacheManager cacheManage)
         {
-            db = Dbcontext;
-           
-            vmodel = new ViewModel.InformationViewModel();
+
+
+            _cacheManager = cacheManage;
 
         }
         //کل رویداد ها
-        public  IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-      
+        
 
-            var obj = db.Event;
-         
-            
-            int? count = obj.ToList().Count;
+            var menuItems = await _cacheManager.GetMenuItemsAsync();
+            var obj = menuItems.ToList().Count();
 
 
-            return Content(count.ToString());
+
+
+
+            return Content(obj.ToString());
 
 
 

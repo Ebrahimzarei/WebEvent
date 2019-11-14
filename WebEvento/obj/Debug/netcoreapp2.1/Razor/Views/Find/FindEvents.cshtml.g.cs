@@ -231,7 +231,7 @@ namespace AspNetCore
             WriteLiteral("\r\n\r\n            <td>\r\n                ");
             EndContext();
             BeginContext(2013, 82, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "48672c4268ea49039bd79486792eca72", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ade68fba26b44f58a42b934eb614b95", async() => {
                 BeginContext(2085, 6, true);
                 WriteLiteral("ویرایش");
                 EndContext();
@@ -268,7 +268,7 @@ namespace AspNetCore
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(2115, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6dffb7aa9e974b69bfa2dc8364a7f5cc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cb7a1049cdc64b1296bce660d7fea69b", async() => {
                 BeginContext(2163, 5, true);
                 WriteLiteral("بیشتر");
                 EndContext();
@@ -303,7 +303,7 @@ namespace AspNetCore
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(2192, 153, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "262b3c70b3cd4714ae1d40ce9f450c8f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f591dd214d334248ad6c342c1816adc8", async() => {
                 BeginContext(2338, 3, true);
                 WriteLiteral("حذف");
                 EndContext();
@@ -341,7 +341,7 @@ namespace AspNetCore
             WriteLiteral("|\r\n                ");
             EndContext();
             BeginContext(2364, 157, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "15e7117870684c53969d6df63ebc3ead", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "69ae45b9840244fead85242ed90da388", async() => {
                 BeginContext(2501, 16, true);
                 WriteLiteral("تایید حهت ارسال ");
                 EndContext();
@@ -379,7 +379,7 @@ namespace AspNetCore
             WriteLiteral("|\r\n                ");
             EndContext();
             BeginContext(2540, 87, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d7d2ba36157a4b34a5845a9ece6a3496", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "39b9f6518cc44f90ae684569033b07ee", async() => {
                 BeginContext(2609, 14, true);
                 WriteLiteral("نیاز به ویرایش");
                 EndContext();

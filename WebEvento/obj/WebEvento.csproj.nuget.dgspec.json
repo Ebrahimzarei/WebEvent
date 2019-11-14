@@ -107,10 +107,6 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
-            "EFSecondLevelCache.Core": {
-              "target": "Package",
-              "version": "[2.7.0, )"
-            },
             "MD.BootstrapPersianDateTimePicker": {
               "target": "Package",
               "version": "[2.3.1, )"

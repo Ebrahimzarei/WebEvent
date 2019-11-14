@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +12,26 @@ namespace WebEvento.ViewComponents
 
     public class NotPublishedViewComponents : Microsoft.AspNetCore.Mvc.ViewComponent
     {
-        WebDbContext db;
+        private readonly IServiceProvider _serviceProvider;
         ViewModel.InformationViewModel vmodel;
-        public NotPublishedViewComponents(WebDbContext Dbcontext)
+        public NotPublishedViewComponents(IServiceProvider serviceProvide)
         {
-            db = Dbcontext;
+            _serviceProvider = serviceProvide;
             vmodel = new ViewModel.InformationViewModel();
         }
         //تعداد   رویداد های منتشر نشده
         public IViewComponentResult Invoke()
         {
+            int? count;
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var dataContext = scope.ServiceProvider.GetRequiredService<WebDbContext>();
 
-            var obj = db.NotPublished;
+                count = dataContext.NotPublished.ToList().Count;
+            }
+         
 
-            vmodel.StatuseCheckedviewcomponent = obj.ToList().Count;
+            vmodel.StatuseCheckedviewcomponent = count;
             return Content(vmodel.StatuseCheckedviewcomponent.ToString());
 
 

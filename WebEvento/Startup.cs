@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pioneer.Pagination;
+using WebEvento.Cashing;
 using WebEvento.Data;
 using WebEvento.Data.Services;
 using WebEvento.Data.Services.Email;
@@ -33,7 +35,16 @@ namespace WebEvento
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
+
         {
+
+
+
+            // Add an in-memory cache service provider
+            services.AddMemoryCache();
+            services.AddSingleton<CacheManager>();
+
+
             //for Pageination
             services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
             //for current user
